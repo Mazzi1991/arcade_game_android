@@ -64,7 +64,7 @@ android.accept_sdk_license = True
 fullscreen = 1
 
 # (str) Supported python version
-p4a.branch = develop
+p4a.branch = master
 
 [buildozer]
 
