@@ -762,7 +762,7 @@ if __name__ == "__main__":
     import os
     import sys
     import traceback
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
     # Intentar guardar el crash en un lugar público de Android para que el usuario pueda leerlo
     try:
