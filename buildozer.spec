@@ -31,7 +31,7 @@ source.exclude_dirs = tests, bin, venv, .git, .github
 version = 0.1
 
 # (list) Application requirements
-requirements = python3,setuptools,kivy==2.3.0,kivymd,pygame,sdl2_ttf,sdl2_image,sdl2_mixer
+requirements = python3==3.10.12,hostpython3==3.10.12,setuptools,kivy==2.3.0,kivymd,pygame,sdl2_ttf,sdl2_image,sdl2_mixer
 
 # (str) Custom source folders for requirements
 # requirements.source.kivy = ../../kivy
