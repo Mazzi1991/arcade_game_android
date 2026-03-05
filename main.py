@@ -12,6 +12,7 @@ import math
 import sys
 import os
 import traceback
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 import time
 from collections import defaultdict
 
@@ -92,11 +93,11 @@ class Player:
         
         import os
         self.images = {}
-        if os.path.exists("player_frames/player_stand_right.png"):
-            img = pygame.image.load("player_frames/player_stand_right.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "player_frames/player_stand_right.png")):
+            img = pygame.image.load(os.path.join(BASE_DIR, "player_frames/player_stand_right.png")).convert_alpha()
             self.images['right'] = pygame.transform.smoothscale(img, (self.width, self.height))
-        if os.path.exists("player_frames/player_stand_left.png"):
-            img = pygame.image.load("player_frames/player_stand_left.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "player_frames/player_stand_left.png")):
+            img = pygame.image.load(os.path.join(BASE_DIR, "player_frames/player_stand_left.png")).convert_alpha()
             self.images['left'] = pygame.transform.smoothscale(img, (self.width, self.height))
             
         self.image = self.images.get('right', None)
@@ -218,8 +219,8 @@ class Enemy:
         
         import os
         self.images = {}
-        if os.path.exists("boss_square.png"):
-            img = pygame.image.load("boss_square.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "boss_square.png")):
+            img = pygame.image.load(os.path.join(BASE_DIR, "boss_square.png")).convert_alpha()
             self.image = pygame.transform.smoothscale(img, (self.width, self.height))
         else:
             self.image = None
@@ -340,8 +341,8 @@ class Candy:
         self.y = 0
         self.rect = pygame.Rect(0, 0, self.radius * 2, self.radius * 2)
         import os
-        if os.path.exists("candy.png"):
-            self.image = pygame.image.load("candy.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "candy.png")):
+            self.image = pygame.image.load(os.path.join(BASE_DIR, "candy.png")).convert_alpha()
             self.image = pygame.transform.smoothscale(self.image, (self.radius * 2, self.radius * 2))
         else:
             self.image = None
@@ -379,8 +380,8 @@ class Projectile:
         self.rect = pygame.Rect(self.x - self.radius, self.y - self.radius, self.radius*2, self.radius*2)
         
         import os
-        if os.path.exists("fireball.png"):
-            self.image = pygame.image.load("fireball.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "fireball.png")):
+            self.image = pygame.image.load(os.path.join(BASE_DIR, "fireball.png")).convert_alpha()
             self.image = pygame.transform.smoothscale(self.image, (self.radius * 4, self.radius * 2))
             # The original image faces right. If shooting left, flip it.
             if self.dx < 0:
@@ -416,23 +417,23 @@ class Game:
         
         # Load background image
         import os
-        if os.path.exists("background.jpg"):
-            bg_img = pygame.image.load("background.jpg").convert()
+        if os.path.exists(os.path.join(BASE_DIR, "background.jpg")):
+            bg_img = pygame.image.load(os.path.join(BASE_DIR, "background.jpg")).convert()
             self.background = pygame.transform.smoothscale(bg_img, (SCREEN_WIDTH, SCREEN_HEIGHT))
         else:
             self.background = None
 
         # Load heart sprite for health
-        if os.path.exists("heart.png"):
-            heart_img = pygame.image.load("heart.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "heart.png")):
+            heart_img = pygame.image.load(os.path.join(BASE_DIR, "heart.png")).convert_alpha()
             # Scale down to a reasonable UI size (e.g. 30x30)
             self.heart_sprite = pygame.transform.smoothscale(heart_img, (30, 30))
         else:
             self.heart_sprite = None
             
         # Load boss health bar sprite
-        if os.path.exists("boss_bar.png"):
-            boss_bar_img = pygame.image.load("boss_bar.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "boss_bar.png")):
+            boss_bar_img = pygame.image.load(os.path.join(BASE_DIR, "boss_bar.png")).convert_alpha()
             # It's originally 1028 px wide; scale it down to appropriate screen width
             self.boss_bar_width = 400
             self.boss_bar_height = 30
@@ -452,13 +453,13 @@ class Game:
         self.ladder_right = pygame.Rect(SCREEN_WIDTH - 160, ladder_y, ladder_width, ladder_height)
         self.ladders = [self.ladder_left, self.ladder_right]
         
-        if os.path.exists("ladder.png"):
-            self.ladder_img = pygame.image.load("ladder.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "ladder.png")):
+            self.ladder_img = pygame.image.load(os.path.join(BASE_DIR, "ladder.png")).convert_alpha()
         else:
             self.ladder_img = None
 
-        if os.path.exists("ground.png"):
-            self.ground_img = pygame.image.load("ground.png").convert_alpha()
+        if os.path.exists(os.path.join(BASE_DIR, "ground.png")):
+            self.ground_img = pygame.image.load(os.path.join(BASE_DIR, "ground.png")).convert_alpha()
             # Stretch the ground sprite to match the floor rectangle dimensions
             self.ground_img = pygame.transform.smoothscale(
                 self.ground_img,
@@ -761,6 +762,7 @@ if __name__ == "__main__":
     import os
     import sys
     import traceback
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     
     # Intentar guardar el crash en un lugar público de Android para que el usuario pueda leerlo
     try:
