@@ -49,7 +49,7 @@ orientation = landscape
 android.permissions = INTERNET, WRITE_EXTERNAL_STORAGE, READ_EXTERNAL_STORAGE
 
 # (int) Target Android API, should be as high as possible.
-android.api = 33
+android.api = 34
 
 # (int) Minimum API your APK / AAB will support.
 android.minapi = 24
@@ -64,7 +64,7 @@ android.accept_sdk_license = True
 fullscreen = 1
 
 # (str) Supported python version
-p4a.branch = master
+p4a.branch = develop
 
 [buildozer]
 
