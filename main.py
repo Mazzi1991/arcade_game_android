@@ -1,4 +1,44 @@
-﻿# Enable pygame_sdl2 if available (Android Kivy/Buildozer environment)
+﻿import sys
+import os
+import traceback
+
+# --- GLOBAL CRASH HANDLER --- #
+# Esto capturará cualquier error antes de que inicie Pygame y lo guardará.
+def custom_excepthook(exc_type, exc_value, exc_traceback):
+    msg = "".join(traceback.format_exception(exc_type, exc_value, exc_traceback))
+    
+    # 1. Guarda en archivo interno de la app
+    try:
+        with open("emergency_crash.txt", "w") as f:
+            f.write("CRASH TEMPRANO:\n" + msg)
+    except:
+        pass
+        
+    # 2. Intenta guardar en la carpeta pública "Documents" del celular
+    try:
+        from android.storage import primary_external_storage_path
+        doc_dir = os.path.join(primary_external_storage_path(), "Documents")
+        os.makedirs(doc_dir, exist_ok=True)
+        with open(os.path.join(doc_dir, "arcade_game_crash.txt"), "w") as f:
+            f.write("CRASH TEMPRANO:\n" + msg)
+    except:
+        pass
+        
+    # 3. Lo envía al Log de Android (visible en adb logcat)
+    try:
+        from jnius import autoclass
+        Log = autoclass('android.util.Log')
+        Log.e("ArcadeGame", "CRASH TEMPRANO: " + msg)
+    except:
+        pass
+        
+    sys.__excepthook__(exc_type, exc_value, exc_traceback)
+    sys.exit(1)
+
+sys.excepthook = custom_excepthook
+# ---------------------------- #
+
+# Enable pygame_sdl2 if available (Android Kivy/Buildozer environment)
 try:
     import pygame_sdl2
     # This replaces the standard pygame module with pygame_sdl2
@@ -9,9 +49,6 @@ except ImportError:
 import pygame
 import random
 import math
-import sys
-import os
-import traceback
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 import time
 from collections import defaultdict
