@@ -27,7 +27,7 @@ class TestApp(App):
     def build(self):
         Window.clearcolor = (0, 0.5, 0, 1) # Green background so we know it worked
         return Label(
-            text="Kivy funciona!\nEl problema es Pygame/SDL2", 
+            text="API 33 Funciona!\nBuildozer está vivo.", 
             font_size='30sp',
             halign='center'
         )
