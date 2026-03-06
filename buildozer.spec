@@ -31,7 +31,7 @@ source.exclude_dirs = tests, bin, venv, .git, .github
 version = 0.1
 
 # (list) Application requirements
-requirements = python3==3.10.12,hostpython3==3.10.12,setuptools,kivy==2.3.0,kivymd,pygame,sdl2_ttf,sdl2_image,sdl2_mixer
+requirements = python3==3.10.12,kivy==2.3.0,pygame,sdl2_ttf,sdl2_image,sdl2_mixer
 
 # (str) Custom source folders for requirements
 # requirements.source.kivy = ../../kivy
@@ -55,7 +55,7 @@ android.api = 34
 android.minapi = 24
 
 # (str) Android NDK architecture (e.g. armeabi-v7a, arm64-v8a)
-android.archs = arm64-v8a
+android.archs = arm64-v8a, armeabi-v7a
 
 # (bool) Auto-accept the SDK licensing
 android.accept_sdk_license = True
